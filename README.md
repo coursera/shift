@@ -1,8 +1,7 @@
 # Shift
 Shift is a development tool that allows you to modify variables and run blocks of code while your Android application is running.
 
-![](https://github.com/coursera/shift/blob/master/images/shiftswitch.gif) ![](https://github.com/coursera/shift/blob/master/images/shiftactions.gif)
-
+![](https://github.com/coursera/shift/blob/master/images/shiftswitch.gif)
 ## Why
 Have you ever needed to temporarily disable a feature during development or hide UI elements? How about trying out different values for animations, switching between API endpoints, or changing the color or margins of UI components? Wouldn't it be nice to be able to repeatedly call certain API's, clear your apps persistent storage, or reset user preferences at anytime in your app? What about sending a screenshot of a bug in your app through email?
 
