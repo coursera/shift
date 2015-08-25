@@ -1,6 +1,8 @@
 # Shift
 Shift is a development tool that allows you to modify variables and run blocks of code while your Android application is running.
 
+![](https://github.com/coursera/shift/blob/master/images/shiftswitch.gif) ![](https://github.com/coursera/shift/blob/master/images/shiftactions.gif)
+
 ## Why
 Have you ever needed to temporarily disable a feature during development or hide UI elements? How about trying out different values for animations, switching between API endpoints, or changing the color or margins of UI components? Wouldn't it be nice to be able to repeatedly call certain API's, clear your apps persistent storage, or reset user preferences at anytime in your app? What about sending a screenshot of a bug in your app through email?
 
@@ -280,6 +282,8 @@ If you want to hook up your own button to launch ShiftMenu, create a ShiftView u
 
 This is an extra feature we included that we use during testing.
 Every time you launch the ShiftMenu, Shift will take a screenshot of the current screen and you have the option to send this screenshot through your choice of email client to someone by navigating to the **REPORT** tab. It will include the device name/type and what SDK it is on.
+
+![](https://github.com/coursera/shift/blob/master/images/shiftreport.gif)
 
 ##Styling
 
