@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="circleimageview-1.2.2">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../2.0/Modules/SettingsModule/settings_module/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.2.2/res" />
+      <root url="jar://$PROJECT_DIR$/../2.0/Modules/SettingsModule/settings_module/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.2.2/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

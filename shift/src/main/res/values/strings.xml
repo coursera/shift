@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Shift</string>
+    <string name="summary">Summary</string>
+    <string name="device">Device</string>
+    <string name="reprosteps">Reproduction Steps</string>
+    <string name="report_email_text">Enter an Email to Send To</string>
+    <string name="send_bug_report">Send Bug Report</string>
+</resources>

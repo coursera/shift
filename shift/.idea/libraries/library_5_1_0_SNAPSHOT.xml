@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="library-5.1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../coursera-android/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.1.0-SNAPSHOT/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../coursera-android/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.1.0-SNAPSHOT/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

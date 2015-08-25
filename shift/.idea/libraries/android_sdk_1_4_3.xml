@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="android-sdk-1.4.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amplitude/android-sdk/1.4.3/a0c3e7e10e98105df443d176819e55a85cadb204/android-sdk-1.4.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amplitude/android-sdk/1.4.3/a7f5ce13e97823cf53de7c8424591af6e21bab0d/android-sdk-1.4.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

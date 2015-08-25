@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="exoplayer_1.2.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../2.0/Modules/VideoModule/CourseraVideoPlayer/libs/exoplayer_1.2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

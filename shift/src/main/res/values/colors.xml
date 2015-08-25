@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="overlay">#42000000</color>
+    <color name="shade">#70000000</color>
+    <color name="background_material_dark">#ff303030</color>
+    <color name="backgroundWhite">#FFFFFF</color>
+    <color name="tab_background">#1565C0</color>
+    <color name="view_pager_background">#ECEFF1</color>
+    <color name="primary">#1565C0</color>
+    <color name="category_color">#1565C0</color>
+</resources>

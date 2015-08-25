@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_menu_margin">2dp</dimen>
+    <dimen name="main_menu_outer_margin">15dp</dimen>
+    <dimen name="category_title_size">16dp</dimen>
+    <dimen name="feature_title_size">14dp</dimen>
+    <dimen name="card_inner_padding">10dp</dimen>
+    <dimen name="value_title_padding">3dp</dimen>
+    <dimen name="card_radius">3dp</dimen>
+    <dimen name="action_card_left_margin">15dp</dimen>
+    <dimen name="card_margin">5dp</dimen>
+</resources>

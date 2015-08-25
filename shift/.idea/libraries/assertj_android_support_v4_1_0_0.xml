@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="assertj-android-support-v4-1.0.0">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../courkit/build/intermediates/exploded-aar/com.squareup.assertj/assertj-android-support-v4/1.0.0/res" />
+      <root url="jar://$PROJECT_DIR$/../courkit/build/intermediates/exploded-aar/com.squareup.assertj/assertj-android-support-v4/1.0.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

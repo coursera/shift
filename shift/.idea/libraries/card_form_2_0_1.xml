@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="card-form-2.0.1">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../2.0/Modules/SpecializationsModule/specializations_module/build/intermediates/exploded-aar/com.braintreepayments/card-form/2.0.1/res" />
+      <root url="jar://$PROJECT_DIR$/../2.0/Modules/SpecializationsModule/specializations_module/build/intermediates/exploded-aar/com.braintreepayments/card-form/2.0.1/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

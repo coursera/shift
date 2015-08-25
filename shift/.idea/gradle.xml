@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="1.7" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/.." />
+            <option value="$PROJECT_DIR$/../2.0/Modules/CatalogV2Module/catalog_v2_module" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/CommonUIModule/common_ui_module" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/CourseContentModule/course_content_module" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/CourseOutlineModule/course_outline" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/ForumsModule/forums_module" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/HomepageModule/homepage_module" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/LearnerProfileModule/learner_profile_module" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/LoginModule/login_module" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/PaymentsModule/payments_module" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/QuizModule/quiz_module" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/SearchModule/search_module" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/SettingsModule/settings_module" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/SpecializationsModule/specializations_module" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/VerificationProfile/verification_profile" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/VideoModule/CourseraVideoPlayer" />
+            <option value="$PROJECT_DIR$/../2.0/Modules/VideoModule/flex_video_player" />
+            <option value="$PROJECT_DIR$/../CastCompanionLibrary-android" />
+            <option value="$PROJECT_DIR$/../Core" />
+            <option value="$PROJECT_DIR$/../CourseraVideoPlayer" />
+            <option value="$PROJECT_DIR$/../ShiftApp" />
+            <option value="$PROJECT_DIR$/../catalog_module" />
+            <option value="$PROJECT_DIR$/../courkit" />
+            <option value="$PROJECT_DIR$/../coursera-android" />
+            <option value="$PROJECT_DIR$/../coursera_data" />
+            <option value="$PROJECT_DIR$/../coursera_data/GreenDaoForAndroidStudio/MyDaoGenerator" />
+            <option value="$PROJECT_DIR$" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

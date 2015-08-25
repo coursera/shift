@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../CastCompanionLibrary-android/CastCompanionLibrary-android.iml" filepath="$PROJECT_DIR$/../CastCompanionLibrary-android/CastCompanionLibrary-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Core/Core.iml" filepath="$PROJECT_DIR$/../Core/Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../CourseraVideoPlayer/CourseraVideoPlayer.iml" filepath="$PROJECT_DIR$/../CourseraVideoPlayer/CourseraVideoPlayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../coursera_data/GreenDaoForAndroidStudio/MyDaoGenerator/MyDaoGenerator.iml" filepath="$PROJECT_DIR$/../coursera_data/GreenDaoForAndroidStudio/MyDaoGenerator/MyDaoGenerator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ShiftApp/ShiftApp.iml" filepath="$PROJECT_DIR$/../ShiftApp/ShiftApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/VideoModule/CourseraVideoPlayer/VideoModule_CourseraVideoPlayer.iml" filepath="$PROJECT_DIR$/../2.0/Modules/VideoModule/CourseraVideoPlayer/VideoModule_CourseraVideoPlayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../catalog_module/catalog_module.iml" filepath="$PROJECT_DIR$/../catalog_module/catalog_module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/CatalogV2Module/catalog_v2_module/catalog_v2_module.iml" filepath="$PROJECT_DIR$/../2.0/Modules/CatalogV2Module/catalog_v2_module/catalog_v2_module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/CommonUIModule/common_ui_module/common_ui_module.iml" filepath="$PROJECT_DIR$/../2.0/Modules/CommonUIModule/common_ui_module/common_ui_module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../courkit/courkit.iml" filepath="$PROJECT_DIR$/../courkit/courkit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/CourseContentModule/course_content_module/course_content_module.iml" filepath="$PROJECT_DIR$/../2.0/Modules/CourseContentModule/course_content_module/course_content_module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/CourseOutlineModule/course_outline/course_outline.iml" filepath="$PROJECT_DIR$/../2.0/Modules/CourseOutlineModule/course_outline/course_outline.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../coursera-android.iml" filepath="$PROJECT_DIR$/../coursera-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../coursera-android/coursera-android-coursera-android.iml" filepath="$PROJECT_DIR$/../coursera-android/coursera-android-coursera-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../coursera_data/coursera_data.iml" filepath="$PROJECT_DIR$/../coursera_data/coursera_data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/VideoModule/flex_video_player/flex_video_player.iml" filepath="$PROJECT_DIR$/../2.0/Modules/VideoModule/flex_video_player/flex_video_player.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/ForumsModule/forums_module/forums_module.iml" filepath="$PROJECT_DIR$/../2.0/Modules/ForumsModule/forums_module/forums_module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/HomepageModule/homepage_module/homepage_module.iml" filepath="$PROJECT_DIR$/../2.0/Modules/HomepageModule/homepage_module/homepage_module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/LearnerProfileModule/learner_profile_module/learner_profile_module.iml" filepath="$PROJECT_DIR$/../2.0/Modules/LearnerProfileModule/learner_profile_module/learner_profile_module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/LoginModule/login_module/login_module.iml" filepath="$PROJECT_DIR$/../2.0/Modules/LoginModule/login_module/login_module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/PaymentsModule/payments_module/payments_module.iml" filepath="$PROJECT_DIR$/../2.0/Modules/PaymentsModule/payments_module/payments_module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/QuizModule/quiz_module/quiz_module.iml" filepath="$PROJECT_DIR$/../2.0/Modules/QuizModule/quiz_module/quiz_module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/SearchModule/search_module/search_module.iml" filepath="$PROJECT_DIR$/../2.0/Modules/SearchModule/search_module/search_module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/SettingsModule/settings_module/settings_module.iml" filepath="$PROJECT_DIR$/../2.0/Modules/SettingsModule/settings_module/settings_module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shift.iml" filepath="$PROJECT_DIR$/shift.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/SpecializationsModule/specializations_module/specializations_module.iml" filepath="$PROJECT_DIR$/../2.0/Modules/SpecializationsModule/specializations_module/specializations_module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../2.0/Modules/VerificationProfile/verification_profile/verification_profile.iml" filepath="$PROJECT_DIR$/../2.0/Modules/VerificationProfile/verification_profile/verification_profile.iml" />
+    </modules>
+  </component>
+</project>

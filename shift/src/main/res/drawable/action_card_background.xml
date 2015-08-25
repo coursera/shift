@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <item android:left="@dimen/action_card_left_margin">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/backgroundWhite"/>
+            <corners android:radius="@dimen/card_radius"/>
+        </shape>
+    </item>
+
+    <item android:left="@dimen/action_card_left_margin" android:right="@dimen/card_radius">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/backgroundWhite"/>
+        </shape>
+    </item>
+</layer-list>
