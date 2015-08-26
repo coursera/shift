@@ -32,7 +32,7 @@ class ShiftPersistenceManager {
 
     private static final String TAG = ShiftPersistenceManager.class.getCanonicalName();
 
-    private static final String TABLE_NAME = "org.coursera.shift.persistence";
+    private static String TABLE_NAME = "shift.persistence.";
 
     // Invalidate once per launch
     private boolean shouldInvalidate = true;
@@ -41,6 +41,7 @@ class ShiftPersistenceManager {
 
     public ShiftPersistenceManager(Context context) {
         mContext = context;
+        TABLE_NAME = TABLE_NAME + mContext.getPackageName();
     }
 
     /**
