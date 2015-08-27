@@ -19,6 +19,16 @@ All features at Coursera are wrapped around a ShiftBoolean. This allows develope
 
 Shift continues to be immensely helpful for building the Coursera Android application and we hope it will benefit others as well.
 
+##Installation
+
+####Gradle
+``` java
+compile 'org.coursera.android:shift:1.0.1'
+```
+####Manual
+
+Clone the repo and then open your Android Studio project. Go to : **File -> Project Structure -> Add a New Module (+) -> Phone And Tablet Application -> Import Existing Project** and select the shift folder.
+
 #Usage
 Shift has 3 main components:
    
@@ -293,14 +303,6 @@ Shift will color itself based on your Theme.AppCompat's accent color.
         <item name="colorAccent">#FB8C00</item>
 </style>
 ```
-##Installation
-
-####Manual
-
-Clone the repo and then open your Android Studio project. Go to : **File -> Project Structure -> Add a New Module (+) -> Phone And Tablet Application -> Import Existing Project** and select the shift folder.
-
-####Gradle
-Coming soon
  
 
 ## Contributing
