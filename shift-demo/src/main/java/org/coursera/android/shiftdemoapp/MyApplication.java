@@ -20,8 +20,6 @@ import org.coursera.android.shift.ShiftAction;
 import org.coursera.android.shift.ShiftManager;
 import org.coursera.android.shift.SimpleVisibilityClient;
 
-import rx.functions.Action0;
-
 public class MyApplication extends Application {
 
     @Override
@@ -60,23 +58,24 @@ public class MyApplication extends Application {
          * Examples of use cases for creating Actions could be clearing user preferences,
          * clearing database storage, sending specific API calls, dumping logs, etc.
         */
-        ShiftManager.getInstance().registerAction(new ShiftAction("Show A Toast", new Action0() {
+
+        ShiftManager.getInstance().registerAction(new ShiftAction("Show A Toast", new Runnable() {
             @Override
-            public void call() {
+            public void run() {
                 Toast.makeText(getApplicationContext(), "I love toast", Toast.LENGTH_SHORT).show();
             }
         }));
 
-        ShiftManager.getInstance().registerAction(new ShiftAction("Clear Database", new Action0() {
+        ShiftManager.getInstance().registerAction(new ShiftAction("Clear Database", new Runnable() {
             @Override
-            public void call() {
+            public void run() {
                 Toast.makeText(getApplicationContext(), "Database cleared", Toast.LENGTH_SHORT).show();
             }
         }));
 
-        ShiftManager.getInstance().registerAction(new ShiftAction("Clear User Preference", new Action0() {
+        ShiftManager.getInstance().registerAction(new ShiftAction("Clear User Preference", new Runnable() {
             @Override
-            public void call() {
+            public void run() {
                 Toast.makeText(getApplicationContext(), "Prefs cleared", Toast.LENGTH_SHORT).show();
             }
         }));

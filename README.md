@@ -13,7 +13,7 @@ Shift helps us with all of these things through the use of ShiftValues and Shift
 
 **`ShiftAction`**
 
- - A wrapper class for a RxJava's Action0 and a String describing what the action does. 
+ - A wrapper class for a Java Runnable and a String describing what the action does. 
  
 All features at Coursera are wrapped around a ShiftBoolean. This allows developers to disable or enable a feature if it is not meant to be released yet and continue working without their code disrupting others. 
 
@@ -75,9 +75,9 @@ if (ShiftValues.IS_NEW_DESIGN_ENABLED.getBooleanValue()) {
 To make a ShiftAction that you can run while in your app, create a new ShiftAction and use ShiftManager to register it:
 
 ```java
- ShiftManager.getInstance().registerAction(new ShiftAction("Clear Persistent Storage", new Action0() {
+ ShiftManager.getInstance().registerAction(new ShiftAction("Clear Persistent Storage", new Runnable() {
             @Override
-            public void call() {
+            public void run() {
                 // Clear Database
             }
         }));
@@ -229,10 +229,10 @@ public class MyActivity extends FragmentActivity implements ShiftValueListener {
 Shift Actions allow you to assign a block of code to be run when you click on a button in Shift. Create a new ShiftAction and then call registerAction() from ShiftManager:
 
 ```java
- ShiftManager.getInstance().registerAction(new ShiftAction("Performs an Action", new Action0() {
+ ShiftManager.getInstance().registerAction(new ShiftAction("Performs an Action", new Runnable() {
             @Override
-            public void call() {
-                //Place your code here
+            public void run() {
+                // Place your code here
             }
         }));
 

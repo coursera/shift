@@ -13,16 +13,15 @@
 
 package org.coursera.android.shift;
 
-import rx.functions.Action0;
 
 /**
- * Wrapper class for a {@link Action0} that includes a description of the Action.
+ * Wrapper class for a {@link Runnable} that includes a description of the Action.
  */
 public class ShiftAction {
     private String mActionName;
-    private Action0 mAction;
+    private Runnable mAction;
 
-    public ShiftAction(String mActionName, Action0 mAction) {
+    public ShiftAction(String mActionName, Runnable mAction) {
         this.mActionName = mActionName;
         this.mAction = mAction;
     }
@@ -31,7 +30,7 @@ public class ShiftAction {
         return mActionName;
     }
 
-    public Action0 getAction() {
+    public Runnable getAction() {
         return mAction;
     }
 }

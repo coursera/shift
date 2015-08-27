@@ -52,7 +52,6 @@ dependencies {
     compile 'com.android.support:cardview-v7:22.2.1'
     compile 'com.android.support:recyclerview-v7:22.2.0'
     compile 'com.android.support:support-v4:22.2.1'
-    compile 'com.netflix.rxjava:rxjava-android:0.20.7'
     compile 'com.snappydb:snappydb-lib:0.5.2'
     compile 'com.esotericsoftware.kryo:kryo:2.24.0'
 }

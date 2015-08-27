@@ -15,11 +15,9 @@ package org.coursera.android.shift;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.List;
@@ -47,7 +45,7 @@ class ShiftActionRecyclerViewAdapter extends RecyclerView.Adapter<ShiftActionRec
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                action.getAction().call();
+                action.getAction().run();
             }
         });
     }
