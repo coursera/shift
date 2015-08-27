@@ -13,7 +13,7 @@ Shift helps us with all of these things through the use of ShiftValues and Shift
 
 **`ShiftAction`**
 
- - A wrapper class for a Java Runnable and a String describing what the action does. 
+ - A wrapper class for a Runnable and a String describing what the action does. 
  
 All features at Coursera are wrapped around a ShiftBoolean. This allows developers to disable or enable a feature if it is not meant to be released yet and continue working without their code disrupting others. 
 
