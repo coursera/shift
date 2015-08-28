@@ -56,5 +56,5 @@ dependencies {
     compile 'com.esotericsoftware.kryo:kryo:2.24.0'
 }
 
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+apply from: 'https://raw.githubusercontent.com/coursera/shift/master/jcenter/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/coursera/shift/master/jcenter/bintrayv1.gradle'
