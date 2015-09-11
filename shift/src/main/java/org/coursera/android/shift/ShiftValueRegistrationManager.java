@@ -18,6 +18,7 @@ interface ShiftValueRegistrationManager {
     void register(ShiftValue key, int defaultValue);
     void register(ShiftValue key, String defaultValue);
     void register(ShiftValue key, float defaultValue);
+    void register(ShiftValue key, StringArraySelector defaultValue);
     boolean getBool(ShiftValue key);
     int getInt(ShiftValue key);
     String getString(ShiftValue key);

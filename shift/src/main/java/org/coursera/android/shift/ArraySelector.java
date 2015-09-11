@@ -13,19 +13,28 @@
 
 package org.coursera.android.shift;
 
-class StringPreference extends ShiftPref<String> {
+class ArraySelector<T> {
+    final T[] ARRAY;
+    int selectedIndex;
 
-    public StringPreference(ShiftPersistenceManager persistenceManager, String key, String defaultValue) {
-        super(persistenceManager, key, defaultValue, String.class);
+    public ArraySelector(T[] array, int index) {
+        ARRAY = array;
+        selectedIndex = index;
     }
 
-    @Override
-    public String getValue() {
-        return PERSISTENCE.getString(KEY, DEFAULT_VALUE);
+    public T getSelectedValue() {
+        return ARRAY[selectedIndex];
     }
 
-    @Override
-    public void setValue(String value) {
-        PERSISTENCE.putString(KEY, value);
+    public void setSelectedIndex(int index) {
+        if(index > ARRAY.length - 1) {
+            throw new IllegalArgumentException("Given index exceeds array length");
+        } else {
+            selectedIndex = index;
+        }
+    }
+
+    public T[] getArray() {
+        return ARRAY;
     }
 }

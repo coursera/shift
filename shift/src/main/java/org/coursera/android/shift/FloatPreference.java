@@ -13,40 +13,19 @@
 
 package org.coursera.android.shift;
 
-class FloatPreference implements ShiftPref<Float> {
-    private final ShiftPersistenceManager PERSISTENCE;
-    private final String KEY;
-    private final float DEFAULT_VALUE;
+class FloatPreference extends ShiftPref<Float> {
 
-    public FloatPreference(ShiftPersistenceManager persistence, String key, float defaultValue) {
-        this.PERSISTENCE = persistence;
-        this.KEY = key;
-        this.DEFAULT_VALUE = defaultValue;
-        setValueToDefault();
+    public FloatPreference(ShiftPersistenceManager persistenceManager, String key, Float defaultValue) {
+        super(persistenceManager, key, defaultValue, Float.class);
     }
 
     @Override
-    public Float getValue() {
+    Float getValue() {
         return PERSISTENCE.getFloat(KEY, DEFAULT_VALUE);
     }
 
     @Override
-    public boolean isValueSet() {
-        return PERSISTENCE.exists(KEY);
-    }
-
-    @Override
-    public void setValue(Float value) {
+    void setValue(Float value) {
         PERSISTENCE.putFloat(KEY, value);
-    }
-
-    @Override
-    public void deleteValue() {
-        PERSISTENCE.removeFloat(KEY);
-    }
-
-    @Override
-    public void setValueToDefault() {
-        setValue(DEFAULT_VALUE);
     }
 }

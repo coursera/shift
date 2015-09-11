@@ -13,14 +13,36 @@
 
 package org.coursera.android.shift;
 
-interface ShiftPref<T> {
-    T getValue();
+abstract class ShiftPref <T> {
+    protected final ShiftPersistenceManager PERSISTENCE;
+    protected final String KEY;
+    protected final T DEFAULT_VALUE;
+    protected final Class<T> CLASS;
 
-    void setValue(T value);
+    public ShiftPref(ShiftPersistenceManager persistenceManager,
+                     String key,
+                     T defaultValue,
+                     Class<T> myClass) {
+        PERSISTENCE = persistenceManager;
+        KEY = key;
+        DEFAULT_VALUE = defaultValue;
+        CLASS = myClass;
+        setValueToDefault();
+    }
 
-    boolean isValueSet();
+    abstract T getValue();
 
-    void deleteValue();
+    abstract void setValue(T value);
 
-    void setValueToDefault();
+    boolean isValueSet() {
+        return PERSISTENCE.exists(KEY);
+    }
+
+    void deleteValue() {
+        PERSISTENCE.remove(KEY, CLASS.getName());
+    }
+
+    void setValueToDefault() {
+        setValue(DEFAULT_VALUE);
+    }
 }

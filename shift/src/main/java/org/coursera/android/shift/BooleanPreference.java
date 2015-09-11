@@ -13,16 +13,10 @@
 
 package org.coursera.android.shift;
 
-class BooleanPreference implements ShiftPref<Boolean> {
-    private final ShiftPersistenceManager PERSISTENCE;
-    private final String KEY;
-    private final boolean DEFAULT_VALUE;
+class BooleanPreference extends ShiftPref<Boolean> {
 
-    public BooleanPreference(ShiftPersistenceManager persistence, String key, boolean defaultValue) {
-        this.PERSISTENCE = persistence;
-        this.KEY = key;
-        this.DEFAULT_VALUE = defaultValue;
-        setValueToDefault();
+    public BooleanPreference(ShiftPersistenceManager persistenceManager, String key, Boolean defaultValue) {
+        super(persistenceManager, key, defaultValue, Boolean.class);
     }
 
     @Override
@@ -33,20 +27,5 @@ class BooleanPreference implements ShiftPref<Boolean> {
     @Override
     public void setValue(Boolean value) {
         PERSISTENCE.putBoolean(KEY, value);
-    }
-
-    @Override
-    public boolean isValueSet() {
-        return PERSISTENCE.exists(KEY);
-    }
-
-    @Override
-    public void deleteValue() {
-        PERSISTENCE.removeBoolean(KEY);
-    }
-
-    @Override
-    public void setValueToDefault() {
-        setValue(DEFAULT_VALUE);
     }
 }

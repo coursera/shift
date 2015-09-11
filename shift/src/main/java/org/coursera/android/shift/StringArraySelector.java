@@ -8,24 +8,13 @@
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
- limitations under the License.
+limitations under the License.
  */
 
 package org.coursera.android.shift;
 
-class StringPreference extends ShiftPref<String> {
-
-    public StringPreference(ShiftPersistenceManager persistenceManager, String key, String defaultValue) {
-        super(persistenceManager, key, defaultValue, String.class);
-    }
-
-    @Override
-    public String getValue() {
-        return PERSISTENCE.getString(KEY, DEFAULT_VALUE);
-    }
-
-    @Override
-    public void setValue(String value) {
-        PERSISTENCE.putString(KEY, value);
+class StringArraySelector extends ArraySelector<String> {
+    public StringArraySelector(String[] array, int index) {
+        super(array, index);
     }
 }
