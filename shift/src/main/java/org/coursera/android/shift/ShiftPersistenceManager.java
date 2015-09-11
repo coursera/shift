@@ -98,7 +98,7 @@ class ShiftPersistenceManager {
             db.putInt(key, value);
             db.close();
         } catch (SnappydbException e) {
-            Log.e(TAG, "putInt " + e.toString());
+            Log.e(TAG, "Error saving key: " + key + ", with error " + e.toString());
             if (db != null) {
                 try {
                     db.close();
@@ -117,7 +117,7 @@ class ShiftPersistenceManager {
             db.close();
             return value;
         } catch (SnappydbException e) {
-            Log.e(TAG, "getInt " + e.toString());
+            Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
             if (db != null) {
                 try {
                     db.close();
@@ -177,7 +177,7 @@ class ShiftPersistenceManager {
             db.put(key, value);
             db.close();
         } catch (SnappydbException e) {
-            Log.e(TAG, "putString " + e.toString());
+            Log.e(TAG, "Error saving key: " + key + ", with error " + e.toString());
             if (db != null) {
                 try {
                     db.close();
@@ -196,7 +196,7 @@ class ShiftPersistenceManager {
             db.close();
             return value;
         } catch (SnappydbException e) {
-            Log.e(TAG, "getString " + e.toString());
+            Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
             if (db != null) {
                 try {
                     db.close();
@@ -215,7 +215,7 @@ class ShiftPersistenceManager {
             db.del(key);
             db.close();
         } catch (SnappydbException e) {
-            Log.e(TAG, e.toString());
+            Log.e(TAG, "Error removing key: " + key + ", with error " + e.toString());
             if (db != null) {
                 try {
                     db.close();
@@ -237,7 +237,7 @@ class ShiftPersistenceManager {
             db.putBoolean(key, value);
             db.close();
         } catch (SnappydbException e) {
-            Log.e(TAG, "putBoolean " + e.toString());
+            Log.e(TAG, "Error saving key: " + key + ", with error " + e.toString());
             if (db != null) {
                 try {
                     db.close();
@@ -256,7 +256,7 @@ class ShiftPersistenceManager {
             db.close();
             return value;
         } catch (SnappydbException e) {
-            Log.e(TAG, "getBoolean " + e.toString());
+            Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
             if (db != null) {
                 try {
                     db.close();
@@ -275,7 +275,7 @@ class ShiftPersistenceManager {
             db.del(key);
             db.close();
         } catch (SnappydbException e) {
-            Log.e(TAG, "removeBoolean " + e.toString());
+            Log.e(TAG, "Error removing key: " + key + ", with error " + e.toString());
             if (db != null) {
                 try {
                     db.close();
@@ -296,7 +296,7 @@ class ShiftPersistenceManager {
             db.putFloat(key, value);
             db.close();
         } catch (SnappydbException e) {
-            Log.e(TAG, "putFloat " + e.toString());
+            Log.e(TAG, "Error saving key: " + key + ", with error " + e.toString());
             if (db != null) {
                 try {
                     db.close();
@@ -315,7 +315,7 @@ class ShiftPersistenceManager {
             db.close();
             return value;
         } catch (SnappydbException e) {
-            Log.e(TAG, "getFloat " + e.toString());
+            Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
             if (db != null) {
                 try {
                     db.close();
@@ -334,7 +334,7 @@ class ShiftPersistenceManager {
             db.del(key);
             db.close();
         } catch (SnappydbException e) {
-            Log.e(TAG, "removeFloat " + e.toString());
+            Log.e(TAG, "Error removing key: " + key + ", with error " + e.toString());
             if (db != null) {
                 try {
                     db.close();

@@ -22,6 +22,7 @@ class FloatPreference implements ShiftPref<Float> {
         this.PERSISTENCE = persistence;
         this.KEY = key;
         this.DEFAULT_VALUE = defaultValue;
+        setValueToDefault();
     }
 
     @Override
