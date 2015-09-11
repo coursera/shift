@@ -35,8 +35,8 @@ import org.coursera.android.shift.ShiftValueListener;
 public class ShiftExampleActivity extends ShiftActionBarActivity implements ShiftValueListener {
 
     private Button shiftMenuButton;
-    private TextView endpoint, token, helloWorld;
-    private ShiftValue[] features = {ShiftValues.END_POINT, ShiftValues.MEANING_OF_LIFE, ShiftValues.WELCOME_MESSAGE};
+    private TextView endpoint, token, helloWorld, logLevel;
+    private ShiftValue[] features = {ShiftValues.END_POINT, ShiftValues.MEANING_OF_LIFE, ShiftValues.WELCOME_MESSAGE, ShiftValues.LOG_LEVEL_SELECTOR};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class ShiftExampleActivity extends ShiftActionBarActivity implements Shif
         token = (TextView) findViewById(R.id.token);
         helloWorld = (TextView) findViewById(R.id.hello_world);
         shiftMenuButton = (Button) findViewById(R.id.shift_menu);
+        logLevel = (TextView) findViewById(R.id.log_level);
 
         // We set up another button that allows us to launch the ShiftMenu ourselves without
         // tapping the floating icon
@@ -65,6 +66,7 @@ public class ShiftExampleActivity extends ShiftActionBarActivity implements Shif
         endpoint.setText(ShiftValues.END_POINT.getStringValue());
         token.setText(ShiftValues.MEANING_OF_LIFE.getStringValue());
         helloWorld.setText(ShiftValues.WELCOME_MESSAGE.getStringValue());
+        logLevel.setText(ShiftValues.LOG_LEVEL_SELECTOR.getSelectedValue());
     }
 
     @Override
@@ -105,6 +107,9 @@ public class ShiftExampleActivity extends ShiftActionBarActivity implements Shif
         }
         if (shiftValue == ShiftValues.WELCOME_MESSAGE) {
             helloWorld.setText(ShiftValues.WELCOME_MESSAGE.getStringValue());
+        }
+        if (shiftValue == ShiftValues.LOG_LEVEL_SELECTOR) {
+            logLevel.setText(ShiftValues.LOG_LEVEL_SELECTOR.getSelectedValue());
         }
     }
 }

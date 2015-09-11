@@ -13,26 +13,26 @@
 
 package org.coursera.android.shift;
 
-class StringArraySelectorPreference extends ShiftPref<StringArraySelector> {
+class StringArraySelectorPreference extends ShiftPref<StringListSelector> {
 
     public StringArraySelectorPreference(ShiftPersistenceManager persistenceManager,
                                          String key,
-                                         StringArraySelector defaultValue) {
-        super(persistenceManager, key, defaultValue, StringArraySelector.class);
+                                         StringListSelector defaultValue) {
+        super(persistenceManager, key, defaultValue, StringListSelector.class);
     }
 
     @Override
-    StringArraySelector getValue() {
-        return PERSISTENCE.getObject(KEY, StringArraySelector.class, DEFAULT_VALUE);
+    StringListSelector getValue() {
+        return PERSISTENCE.getObject(KEY, StringListSelector.class, DEFAULT_VALUE);
     }
 
     @Override
-    void setValue(StringArraySelector value) {
+    void setValue(StringListSelector value) {
         PERSISTENCE.putObject(KEY, value);
     }
 
     void setSelectedIndex(int index) {
-        StringArraySelector newValue = PERSISTENCE.getObject(KEY, StringArraySelector.class, DEFAULT_VALUE);
+        StringListSelector newValue = PERSISTENCE.getObject(KEY, StringListSelector.class, DEFAULT_VALUE);
         newValue.setSelectedIndex(index);
         PERSISTENCE.putObject(KEY, newValue);
     }

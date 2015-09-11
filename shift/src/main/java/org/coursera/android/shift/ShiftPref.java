@@ -27,7 +27,9 @@ abstract class ShiftPref <T> {
         KEY = key;
         DEFAULT_VALUE = defaultValue;
         CLASS = myClass;
-        setValueToDefault();
+        if (!isValueSet()) {
+            setValueToDefault();
+        }
     }
 
     abstract T getValue();

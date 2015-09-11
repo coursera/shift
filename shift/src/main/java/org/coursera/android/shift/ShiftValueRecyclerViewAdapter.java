@@ -22,8 +22,11 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +41,7 @@ class ShiftValueRecyclerViewAdapter extends RecyclerView.Adapter<ShiftValueRecyc
     public static final int TYPE_STRING = 1;
     public static final int TYPE_INT = 2;
     public static final int TYPE_FLOAT = 3;
+    public static final int TYPE_STRING_SELECTOR = 4;
 
     private final Context mContext;
     private Map<ShiftValue, ShiftPref> mShiftValueToPref;
@@ -63,6 +67,7 @@ class ShiftValueRecyclerViewAdapter extends RecyclerView.Adapter<ShiftValueRecyc
         public final EditText editString;
         public final EditText editInt;
         public final EditText editFloat;
+        public final Spinner spinnerStringSelector;
         public TextWatcher textWatcher;
 
         public ShiftValueViewHolder(View view) {
@@ -72,6 +77,7 @@ class ShiftValueRecyclerViewAdapter extends RecyclerView.Adapter<ShiftValueRecyc
             editString = (EditText) view.findViewById(R.id.feature_string);
             editInt = (EditText) view.findViewById(R.id.feature_int);
             editFloat = (EditText) view.findViewById(R.id.feature_float);
+            spinnerStringSelector = (Spinner) view.findViewById(R.id.feature_string_selector);
         }
     }
 
@@ -97,6 +103,8 @@ class ShiftValueRecyclerViewAdapter extends RecyclerView.Adapter<ShiftValueRecyc
             return TYPE_STRING;
         } else if (type instanceof IntPreference) {
             return TYPE_INT;
+        } else if (type instanceof StringArraySelectorPreference) {
+            return TYPE_STRING_SELECTOR;
         } else {
             return TYPE_FLOAT;
         }
@@ -116,6 +124,9 @@ class ShiftValueRecyclerViewAdapter extends RecyclerView.Adapter<ShiftValueRecyc
                 break;
             case (TYPE_FLOAT):
                 view = LayoutInflater.from(mContext).inflate(R.layout.float_feature, parent, false);
+                break;
+            case (TYPE_STRING_SELECTOR):
+                view = LayoutInflater.from(mContext).inflate(R.layout.string_selector, parent, false);
                 break;
             default:
                 view = new View(mContext);
@@ -234,6 +245,26 @@ class ShiftValueRecyclerViewAdapter extends RecyclerView.Adapter<ShiftValueRecyc
                 holder.editFloat.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
                 holder.editFloat.addTextChangedListener(holder.textWatcher);
                 break;
+            case TYPE_STRING_SELECTOR:
+                final StringArraySelectorPreference stringSelectorPref = (StringArraySelectorPreference) mShiftValueToPref.get(key);
+                List<String> values = stringSelectorPref.getValue().getList();
+                int selectedIndex = stringSelectorPref.getValue().selectedIndex;
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,android.R.layout.simple_spinner_item,values);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                holder.spinnerStringSelector.setAdapter(adapter);
+                holder.spinnerStringSelector.setSelection(selectedIndex);
+                holder.spinnerStringSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            stringSelectorPref.setSelectedIndex(position);
+                            ShiftManager.getInstance().notifyShiftListeners(key);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        //Do nothing
+                    }
+                });
         }
     }
 

@@ -149,13 +149,13 @@ ShiftManager.initialize(this, visibilityClient, MainActivity.class);
 ***Calling ShiftManager.getInstance() before calling ShiftManager.initialize() will throw an exception!***
 
 ### Shift Value
-There are 4 types of ShiftValues: 
+There are 5 types of ShiftValues: 
 
  - ShiftString
  - ShiftBoolean
  - ShiftInteger
  - ShiftFloat
-
+ - ShiftStringArraySelector
 
 Each ShiftValue takes a Category, Description and Author as Strings, 
 a boolean that determines if the application will restart when this ShiftValue is changed, and the default value for this specific ShiftValue.

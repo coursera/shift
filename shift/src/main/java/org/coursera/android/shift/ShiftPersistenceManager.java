@@ -18,6 +18,7 @@ import android.util.Log;
 
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
+import com.snappydb.SnappyDB;
 import com.snappydb.SnappydbException;
 
 import java.lang.reflect.Array;
@@ -29,6 +30,8 @@ import java.util.Set;
  * Allows us to store primitives easily like SharedPreferences, but also gives
  * flexibility to store more complicated objects in the future (Eg. Arrays with a selected index).
  */
+
+@SuppressWarnings("SynchronizeOnNonFinalField")
 class ShiftPersistenceManager {
 
     private static final String TAG = ShiftPersistenceManager.class.getCanonicalName();
@@ -38,106 +41,89 @@ class ShiftPersistenceManager {
     // Invalidate once per launch
     private boolean shouldInvalidate = true;
 
-    private Context mContext;
+    private DB db;
 
     public ShiftPersistenceManager(Context context) {
-        mContext = context;
-        TABLE_NAME = TABLE_NAME + mContext.getPackageName();
+        TABLE_NAME = TABLE_NAME + context.getPackageName();
+        try {
+            db = new SnappyDB.Builder(context)
+                    .name(TABLE_NAME)
+                    .build();
+        } catch (Exception e) {
+            Log.e(TAG, "Error creating database");
+            e.printStackTrace();
+        }
     }
 
     /**
-     *  * INVALIDATE DB HELPERS:
+     * * INVALIDATE DB HELPERS:
      * If the client decides to remove ShiftValues from their code, we will have values in the
      * database that are no longer needed.
      * We should remove the extra keys/values that are not stored in the
      * {@link ShiftValueSubscriptionManagerImpl}
+     *
      * @param keys
      * @param prefix SnappyDB can only count with a prefix so we prepend this in
-     * {@link ShiftValue#toString()}. Would prefer if there was simple a db.countAllKeys() but
-     * aside from that SnappyDB seems to fit our needs with out too much boilerplate
+     *               {@link ShiftValue#toString()}. Would prefer if there was simple a db.countAllKeys() but
+     *               aside from that SnappyDB seems to fit our needs with out too much boilerplate
      */
     public void invalidateDatabase(Set<String> keys, String prefix) {
-        if (shouldInvalidate) {
-            DB db = null;
-            try {
-                db = DBFactory.open(mContext, TABLE_NAME);
-                int dbKeysCount = db.countKeys(prefix);
-                if (dbKeysCount > keys.size()) {
-                    String[] dbKeys = db.findKeys(prefix);
-                    for (String dbKey : dbKeys) {
-                        if (!keys.contains(dbKey)) {
-                            db.del(dbKey);
+        synchronized (db) {
+            if (shouldInvalidate) {
+                try {
+                    int dbKeysCount = db.countKeys(prefix);
+                    if (dbKeysCount > keys.size()) {
+                        String[] dbKeys = db.findKeys(prefix);
+                        for (String dbKey : dbKeys) {
+                            if (!keys.contains(dbKey)) {
+                                db.del(dbKey);
+                            }
                         }
                     }
-                }
-                db.close();
-            } catch (SnappydbException e) {
-                Log.e(TAG, "invalidateDatabase " + e.toString());
-                if (db != null) {
-                    try {
-                        db.close();
-                    } catch (SnappydbException e1) {
-                        Log.e(TAG, "invalidateDatabase " + e.toString());
-                    }
+                    shouldInvalidate = false;
+                } catch (SnappydbException e) {
+                    Log.e(TAG, "Error for invalidateDatabase with error: " + e.toString());
                 }
             }
-            shouldInvalidate = false;
         }
     }
 
     public boolean shouldInvalidate() {
         return shouldInvalidate;
     }
-
-    private void closeDB(DB db, String tag) {
-        if (db != null) {
-            try {
-                db.close();
-            } catch (SnappydbException e) {
-                Log.e(TAG, "Error closing DB on method: " + tag +" with error: " + e.toString());
-            }
-        }
-    }
-
+    
     /*
         INT
      */
     public void putInt(String key, int value) {
-        DB db = null;
-        try {
-            db = DBFactory.open(mContext, TABLE_NAME);
-            db.putInt(key, value);
-            db.close();
-        } catch (SnappydbException e) {
-            Log.e(TAG, "Error saving key: " + key + ", with error " + e.toString());
-            closeDB(db, "putInt");
+        synchronized (db) {
+            try {
+                db.putInt(key, value);
+            } catch (SnappydbException e) {
+                Log.e(TAG, "Error saving key: " + key + ", with error " + e.toString());
+            }
         }
     }
 
     public int getInt(String key, int defaultValue) {
-        DB db = null;
-        try {
-            db = DBFactory.open(mContext, TABLE_NAME);
-            int value = db.getInt(key);
-            db.close();
-            return value;
-        } catch (SnappydbException e) {
-            Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
-            closeDB(db, "getInt");
+        synchronized (db) {
+            try {
+                return db.getInt(key);
+            } catch (SnappydbException e) {
+                Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
+            }
         }
         return defaultValue;
     }
 
     public boolean exists(String key) {
-        DB db = null;
         boolean exists = false;
-        try {
-            db = DBFactory.open(mContext, TABLE_NAME);
-            exists = db.exists(key);
-            db.close();
-        } catch (SnappydbException e) {
-            Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
-            closeDB(db, "exists");
+        synchronized (db) {
+            try {
+                exists = db.exists(key);
+            } catch (SnappydbException e) {
+                Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
+            }
         }
         return exists;
     }
@@ -146,27 +132,22 @@ class ShiftPersistenceManager {
         STRING
      */
     public void putString(String key, String value) {
-        DB db = null;
-        try {
-            db = DBFactory.open(mContext, TABLE_NAME);
-            db.put(key, value);
-            db.close();
-        } catch (SnappydbException e) {
-            Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
-            closeDB(db, "putString");
+        synchronized (db) {
+            try {
+                db.put(key, value);
+            } catch (SnappydbException e) {
+                Log.e(TAG, "Error saving key: " + key + ", with error " + e.toString());
+            }
         }
     }
 
     public String getString(String key, String defaultValue) {
-        DB db = null;
-        try {
-            db = DBFactory.open(mContext, TABLE_NAME);
-            String value = db.get(key);
-            db.close();
-            return value;
-        } catch (SnappydbException e) {
-            Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
-            closeDB(db, "getString");
+        synchronized (db) {
+            try {
+                return db.get(key);
+            } catch (SnappydbException e) {
+                Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
+            }
         }
         return defaultValue;
     }
@@ -176,27 +157,22 @@ class ShiftPersistenceManager {
      */
 
     public void putBoolean(String key, boolean value) {
-        DB db = null;
-        try {
-            db = DBFactory.open(mContext, TABLE_NAME);
-            db.putBoolean(key, value);
-            db.close();
-        } catch (SnappydbException e) {
-            Log.e(TAG, "Error saving key: " + key + ", with error " + e.toString());
-            closeDB(db, "putBoolean");
+        synchronized (db) {
+            try {
+                db.putBoolean(key, value);
+            } catch (SnappydbException e) {
+                Log.e(TAG, "Error saving key: " + key + ", with error " + e.toString());
+            }
         }
     }
 
     public boolean getBoolean(String key, boolean defaultValue) {
-        DB db = null;
-        try {
-            db = DBFactory.open(mContext, TABLE_NAME);
-            boolean value = db.getBoolean(key);
-            db.close();
-            return value;
-        } catch (SnappydbException e) {
-            Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
-            closeDB(db, "getBoolean");
+        synchronized (db) {
+            try {
+                return db.getBoolean(key);
+            } catch (SnappydbException e) {
+                Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
+            }
         }
         return defaultValue;
     }
@@ -205,68 +181,56 @@ class ShiftPersistenceManager {
         FLOAT
      */
     public void putFloat(String key, float value) {
-        DB db = null;
-        try {
-            db = DBFactory.open(mContext, TABLE_NAME);
-            db.putFloat(key, value);
-            db.close();
-        } catch (SnappydbException e) {
-            Log.e(TAG, "Error saving key: " + key + ", with error " + e.toString());
-            closeDB(db, "putFloat");
+        synchronized (db) {
+            try {
+                db.putFloat(key, value);
+            } catch (SnappydbException e) {
+                Log.e(TAG, "Error saving key: " + key + ", with error " + e.toString());
+            }
         }
     }
 
     public float getFloat(String key, float defaultValue) {
-        DB db = null;
-        try {
-            db = DBFactory.open(mContext, TABLE_NAME);
-            float value = db.getFloat(key);
-            db.close();
-            return value;
-        } catch (SnappydbException e) {
-            Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
-            closeDB(db, "getFloat");
+        synchronized (db) {
+            try {
+                return db.getFloat(key);
+            } catch (SnappydbException e) {
+                Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
+            }
         }
         return defaultValue;
     }
 
     public void remove(String key, String type) {
-        DB db = null;
-        try {
-            db = DBFactory.open(mContext, TABLE_NAME);
-            db.del(key);
-            db.close();
-        } catch (SnappydbException e) {
-            Log.e(TAG, "Error removing key: " + key + ", for type: " +
-                    type + " with error" + e.toString());
-            closeDB(db, "remove");
+        synchronized (db) {
+            try {
+                db.del(key);
+            } catch (SnappydbException e) {
+                Log.e(TAG, "Error removing key: " + key + ", for type: " +
+                        type + " with error" + e.toString());
+            }
         }
     }
 
-    // SELECTOR
+    // Objects
 
     public <T> void putObject(String key, T value) {
-        DB db = null;
-        try {
-            db = DBFactory.open(mContext, TABLE_NAME);
-            db.put(key, value);
-            db.close();
-        } catch (SnappydbException e) {
-            Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
-            closeDB(db, "putObject");
+        synchronized (db) {
+            try {
+                db.put(key, value);
+            } catch (SnappydbException e) {
+                Log.e(TAG, "Error saving key: " + key + ", with error " + e.toString());
+            }
         }
     }
 
     public <T> T getObject(String key, Class<T> objectClass, T defaultValue) {
-        DB db = null;
-        try {
-            db = DBFactory.open(mContext, TABLE_NAME);
-            T value = db.getObject(key, objectClass);
-            db.close();
-            return value;
-        } catch (SnappydbException e) {
-            Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
-            closeDB(db, "getObject");
+        synchronized (db) {
+            try {
+                return db.getObject(key, objectClass);
+            } catch (SnappydbException e) {
+                Log.e(TAG, "Error retrieving key: " + key + ", with error " + e.toString());
+            }
         }
         return defaultValue;
     }
