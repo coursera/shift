@@ -139,9 +139,6 @@ class ShiftValueRecyclerViewAdapter extends RecyclerView.Adapter<ShiftValueRecyc
             case TYPE_BOOLEAN:
                 final BooleanPreference boolPref = (BooleanPreference) mShiftValueToPref.get(key);
                 holder.onOrOff.setOnCheckedChangeListener(null);
-                if (!boolPref.isValueSet()) {
-                    boolPref.setValueToDefault();
-                }
                 holder.onOrOff.setChecked(boolPref.getValue());
                 holder.onOrOff.setOnCheckedChangeListener(
                         new CompoundButton.OnCheckedChangeListener() {
@@ -155,9 +152,6 @@ class ShiftValueRecyclerViewAdapter extends RecyclerView.Adapter<ShiftValueRecyc
             case TYPE_STRING:
                 final StringPreference stringPref = (StringPreference) mShiftValueToPref.get(key);
                 holder.editString.removeTextChangedListener(holder.textWatcher);
-                if (!stringPref.isValueSet()) {
-                    stringPref.setValueToDefault();
-                }
                 holder.editString.setText(stringPref.getValue());
                 holder.textWatcher = new TextWatcher() {
                     @Override
@@ -181,9 +175,6 @@ class ShiftValueRecyclerViewAdapter extends RecyclerView.Adapter<ShiftValueRecyc
             case TYPE_INT:
                 final IntPreference intPref = (IntPreference) mShiftValueToPref.get(key);
                 holder.editInt.removeTextChangedListener(holder.textWatcher);
-                if (!intPref.isValueSet()) {
-                    intPref.setValueToDefault();
-                }
                 holder.editInt.setText(intPref.getValue() + "");
                 holder.textWatcher = new TextWatcher() {
                     @Override
@@ -215,9 +206,6 @@ class ShiftValueRecyclerViewAdapter extends RecyclerView.Adapter<ShiftValueRecyc
             case TYPE_FLOAT:
                 final FloatPreference floatPref = (FloatPreference) mShiftValueToPref.get(key);
                 holder.editFloat.removeTextChangedListener(holder.textWatcher);
-                if (!floatPref.isValueSet()) {
-                    floatPref.setValueToDefault();
-                }
                 holder.editFloat.setText(floatPref.getValue() + "");
                 holder.textWatcher = new TextWatcher() {
                     @Override
