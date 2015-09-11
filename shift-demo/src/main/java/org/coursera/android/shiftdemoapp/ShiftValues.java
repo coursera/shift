@@ -17,6 +17,7 @@ import org.coursera.android.shift.ShiftBoolean;
 import org.coursera.android.shift.ShiftFloat;
 import org.coursera.android.shift.ShiftInteger;
 import org.coursera.android.shift.ShiftString;
+import org.coursera.android.shift.ShiftStringArraySelector;
 
 /**
  * Class to hold all of our ShiftValues
@@ -24,7 +25,7 @@ import org.coursera.android.shift.ShiftString;
 public class ShiftValues {
 
     private static final String CATEGORY_FEATURES = "Features";
-    private static final String CATEGORY_STRINGS= "Strings";
+    private static final String CATEGORY_STRINGS = "Strings";
     private static final String CATEGORY_NUMS = "Nums";
 
     // You can register any of the ShiftValueEntries with a value of type:
@@ -46,4 +47,10 @@ public class ShiftValues {
     // We want this particular ShiftValue to restart the application when it's value is changed
     // so we set the 4th parameter boolean to be true
     public static final ShiftBoolean IS_A_ENABLED = new ShiftBoolean(CATEGORY_FEATURES, "Enable/Disable a and Restart app", "Paul", true, true);
+
+    //Selectors allow you to provide an Array of values and a preferred index for the value you want
+    //We set the default index here to 0 so Verbose will be selected as default
+    public static final ShiftStringArraySelector LOG_LEVEL_SELECTOR =
+            new ShiftStringArraySelector(CATEGORY_FEATURES, "Log Level", "Stanley",
+                    new String[]{"Verbose", "Debug", "Info", "Warn", "Error", "Assert"}, 0, false);
 }

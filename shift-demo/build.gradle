@@ -23,5 +23,9 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:support-v4:22.2.1'
-    compile 'org.coursera.android:shift:1.0.2'
+    // Use this if you do not want to clone the repo and get library from Maven/JCenter instead
+    // compile 'org.coursera.android:shift:1.0.3'
+
+    // Use this if you have cloned the library directly into your project
+    compile project(':shift')
 }

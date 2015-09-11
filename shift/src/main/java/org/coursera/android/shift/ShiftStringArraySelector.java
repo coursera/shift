@@ -13,19 +13,15 @@ limitations under the License.
 
 package org.coursera.android.shift;
 
+import java.util.List;
 public class ShiftStringArraySelector extends ShiftValue {
 
     public ShiftStringArraySelector(String category, String feature, String author,
                                     String[] array, int index, boolean shouldRestartApplicationOnChange) {
         super(category, feature, author, shouldRestartApplicationOnChange);
-        StringArraySelector defaultValue = new StringArraySelector(array,index);
-        ShiftManager.getInstance().getValueRegistrationManager().register(this, defaultValue);
-    }
 
-    void setSelectedIndex(int index) {
-        StringArraySelectorPreference pref = ShiftManager.getInstance()
-                .getValueRegistrationManager().getStringArraySelectorPreference(this);
-        pref.setSelectedIndex(index);
+        StringListSelector defaultValue = new StringListSelector(array,index);
+        ShiftManager.getInstance().getValueRegistrationManager().register(this, defaultValue);
     }
 
     public String getSelectedValue() {
@@ -34,7 +30,9 @@ public class ShiftStringArraySelector extends ShiftValue {
     }
 
     public String[] getStringArray() {
-        return ShiftManager.getInstance().getValueRegistrationManager()
+        List<String> list = ShiftManager.getInstance().getValueRegistrationManager()
                 .getStringArraySelectorValues(this);
+        String[] array = new String[list.size()];
+        return list.toArray(array);
     }
 }
