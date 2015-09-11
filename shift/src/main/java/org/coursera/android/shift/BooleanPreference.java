@@ -22,6 +22,7 @@ class BooleanPreference implements ShiftPref<Boolean> {
         this.PERSISTENCE = persistence;
         this.KEY = key;
         this.DEFAULT_VALUE = defaultValue;
+        setValueToDefault();
     }
 
     @Override

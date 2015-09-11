@@ -35,5 +35,7 @@ captures/
 
 .idea/
 
+.DS_Store
+
 # Signing files
 .signing/
