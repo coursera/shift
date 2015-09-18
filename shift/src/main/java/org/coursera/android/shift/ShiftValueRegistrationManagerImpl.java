@@ -34,8 +34,8 @@ class ShiftValueRegistrationManagerImpl implements ShiftValueRegistrationManager
     private Map<ShiftValue, IntPreference> mIntMap = new HashMap<ShiftValue, IntPreference>();
     private Map<ShiftValue, StringPreference> mStringMap = new HashMap<ShiftValue, StringPreference>();
     private Map<ShiftValue, FloatPreference> mFloatMap = new HashMap<ShiftValue, FloatPreference>();
-    private Map<ShiftValue, StringArraySelectorPreference> mStringArraySelectorMap
-            = new HashMap<ShiftValue, StringArraySelectorPreference>();
+    private Map<ShiftValue, StringListSelectorPreference> mStringArraySelectorMap
+            = new HashMap<ShiftValue, StringListSelectorPreference>();
 
     private ShiftPersistenceManager mPersistence;
 
@@ -81,7 +81,7 @@ class ShiftValueRegistrationManagerImpl implements ShiftValueRegistrationManager
         if (mStringArraySelectorMap.containsKey(key)) {
             throw new IllegalArgumentException("This key has already been registered before");
         }
-        mStringArraySelectorMap.put(key, new StringArraySelectorPreference(mPersistence,
+        mStringArraySelectorMap.put(key, new StringListSelectorPreference(mPersistence,
                 key.toString(),
                 defaultValue));
     }
@@ -118,8 +118,8 @@ class ShiftValueRegistrationManagerImpl implements ShiftValueRegistrationManager
         return mFloatMap.get(key).getValue();
     }
 
-    public StringArraySelectorPreference getStringArraySelectorPreference(ShiftValue key) {
-        StringArraySelectorPreference pref = mStringArraySelectorMap.get(key);
+    public StringListSelectorPreference getStringArraySelectorPreference(ShiftValue key) {
+        StringListSelectorPreference pref = mStringArraySelectorMap.get(key);
         if (pref == null) {
             throw new IllegalArgumentException("There is no StringListSelector value " +
                     "for this ShiftValue: " + key.toString());
@@ -128,7 +128,7 @@ class ShiftValueRegistrationManagerImpl implements ShiftValueRegistrationManager
     }
 
     public String getStringArraySelectorSelectedValue(ShiftValue key) {
-        StringArraySelectorPreference pref = mStringArraySelectorMap.get(key);
+        StringListSelectorPreference pref = mStringArraySelectorMap.get(key);
         if (pref == null) {
             throw new IllegalArgumentException("There is no StringListSelector value " +
                     "for this ShiftValue: " + key.toString());
@@ -137,7 +137,7 @@ class ShiftValueRegistrationManagerImpl implements ShiftValueRegistrationManager
     }
 
     public List<String> getStringArraySelectorValues(ShiftValue key) {
-        StringArraySelectorPreference pref = mStringArraySelectorMap.get(key);
+        StringListSelectorPreference pref = mStringArraySelectorMap.get(key);
         if (pref == null) {
             throw new IllegalArgumentException("There is no StringListSelector value " +
                     "for this ShiftValue: " + key.toString());
