@@ -34,6 +34,8 @@ class ShiftValueRegistrationManagerImpl implements ShiftValueRegistrationManager
     private Map<ShiftValue, IntPreference> mIntMap = new HashMap<ShiftValue, IntPreference>();
     private Map<ShiftValue, StringPreference> mStringMap = new HashMap<ShiftValue, StringPreference>();
     private Map<ShiftValue, FloatPreference> mFloatMap = new HashMap<ShiftValue, FloatPreference>();
+    private Map<ShiftValue, StringListSelectorPreference> mStringArraySelectorMap
+            = new HashMap<ShiftValue, StringListSelectorPreference>();
 
     private ShiftPersistenceManager mPersistence;
 
@@ -74,6 +76,16 @@ class ShiftValueRegistrationManagerImpl implements ShiftValueRegistrationManager
                 new FloatPreference(mPersistence, key.toString(), defaultValue));
     }
 
+    @Override
+    public void register(ShiftValue key, StringListSelector defaultValue) {
+        if (mStringArraySelectorMap.containsKey(key)) {
+            throw new IllegalArgumentException("This key has already been registered before");
+        }
+        mStringArraySelectorMap.put(key, new StringListSelectorPreference(mPersistence,
+                key.toString(),
+                defaultValue));
+    }
+
     public boolean getBool(ShiftValue key) {
         BooleanPreference pref = mBooleanMap.get(key);
         if (pref == null) {
@@ -106,6 +118,33 @@ class ShiftValueRegistrationManagerImpl implements ShiftValueRegistrationManager
         return mFloatMap.get(key).getValue();
     }
 
+    public StringListSelectorPreference getStringArraySelectorPreference(ShiftValue key) {
+        StringListSelectorPreference pref = mStringArraySelectorMap.get(key);
+        if (pref == null) {
+            throw new IllegalArgumentException("There is no StringListSelector value " +
+                    "for this ShiftValue: " + key.toString());
+        }
+        return pref;
+    }
+
+    public String getStringArraySelectorSelectedValue(ShiftValue key) {
+        StringListSelectorPreference pref = mStringArraySelectorMap.get(key);
+        if (pref == null) {
+            throw new IllegalArgumentException("There is no StringListSelector value " +
+                    "for this ShiftValue: " + key.toString());
+        }
+        return mStringArraySelectorMap.get(key).getValue().getSelectedValue();
+    }
+
+    public List<String> getStringArraySelectorValues(ShiftValue key) {
+        StringListSelectorPreference pref = mStringArraySelectorMap.get(key);
+        if (pref == null) {
+            throw new IllegalArgumentException("There is no StringListSelector value " +
+                    "for this ShiftValue: " + key.toString());
+        }
+        return mStringArraySelectorMap.get(key).getValue().getList();
+    }
+
     Map<ShiftValue, ShiftPref> getShiftValueToPref() {
         /*
             Invalidate Database at this point. This point in execution guarantees all ShiftValues
@@ -118,6 +157,7 @@ class ShiftValueRegistrationManagerImpl implements ShiftValueRegistrationManager
         map.putAll(mIntMap);
         map.putAll(mStringMap);
         map.putAll(mFloatMap);
+        map.putAll(mStringArraySelectorMap);
         return map;
     }
 
@@ -127,6 +167,7 @@ class ShiftValueRegistrationManagerImpl implements ShiftValueRegistrationManager
         features.addAll(mIntMap.keySet());
         features.addAll(mStringMap.keySet());
         features.addAll(mFloatMap.keySet());
+        features.addAll(mStringArraySelectorMap.keySet());
         return features;
     }
 
@@ -162,6 +203,7 @@ class ShiftValueRegistrationManagerImpl implements ShiftValueRegistrationManager
         shiftValues.addAll(mIntMap.keySet());
         shiftValues.addAll(mStringMap.keySet());
         shiftValues.addAll(mFloatMap.keySet());
+        shiftValues.addAll(mStringArraySelectorMap.keySet());
         for (ShiftValue value : shiftValues) {
             keys.add(value.toString());
         }

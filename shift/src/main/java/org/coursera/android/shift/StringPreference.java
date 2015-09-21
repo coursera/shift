@@ -13,16 +13,10 @@
 
 package org.coursera.android.shift;
 
-class StringPreference implements ShiftPref<String> {
-    private final ShiftPersistenceManager PERSISTENCE;
-    private final String KEY;
-    private final String DEFAULT_VALUE;
+class StringPreference extends ShiftPref<String> {
 
-    public StringPreference(ShiftPersistenceManager persistence, String key, String defaultValue) {
-        this.PERSISTENCE = persistence;
-        this.KEY = key;
-        this.DEFAULT_VALUE = defaultValue;
-        setValueToDefault();
+    public StringPreference(ShiftPersistenceManager persistenceManager, String key, String defaultValue) {
+        super(persistenceManager, key, defaultValue, String.class);
     }
 
     @Override
@@ -31,22 +25,7 @@ class StringPreference implements ShiftPref<String> {
     }
 
     @Override
-    public boolean isValueSet() {
-        return PERSISTENCE.exists(KEY);
-    }
-
-    @Override
     public void setValue(String value) {
         PERSISTENCE.putString(KEY, value);
-    }
-
-    @Override
-    public void deleteValue() {
-        PERSISTENCE.removeString(KEY);
-    }
-
-    @Override
-    public void setValueToDefault() {
-        setValue(DEFAULT_VALUE);
     }
 }

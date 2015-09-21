@@ -78,11 +78,11 @@ public class ShiftExampleFragment extends Fragment implements ShiftValueListener
     }
 
     public void refreshButtonVisibility() {
-//        if (ShiftValues.IS_A_ENABLED.getBooleanValue()) {
-//            buttonA.setVisibility(View.VISIBLE);
-//        } else {
-//            buttonA.setVisibility(View.GONE);
-//        }
+        if (ShiftValues.IS_A_ENABLED.getBooleanValue()) {
+            buttonA.setVisibility(View.VISIBLE);
+        } else {
+            buttonA.setVisibility(View.GONE);
+        }
         if (ShiftValues.IS_B_ENABLED.getBooleanValue()) {
             buttonB.setVisibility(View.VISIBLE);
         } else {
