@@ -13,11 +13,11 @@
 
 package org.coursera.android.shift;
 
-class StringArraySelectorPreference extends ShiftPref<StringListSelector> {
+class StringListSelectorPreference extends ShiftPref<StringListSelector> {
 
-    public StringArraySelectorPreference(ShiftPersistenceManager persistenceManager,
-                                         String key,
-                                         StringListSelector defaultValue) {
+    public StringListSelectorPreference(ShiftPersistenceManager persistenceManager,
+                                        String key,
+                                        StringListSelector defaultValue) {
         super(persistenceManager, key, defaultValue, StringListSelector.class);
     }
 

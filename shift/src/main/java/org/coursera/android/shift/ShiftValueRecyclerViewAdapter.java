@@ -103,7 +103,7 @@ class ShiftValueRecyclerViewAdapter extends RecyclerView.Adapter<ShiftValueRecyc
             return TYPE_STRING;
         } else if (type instanceof IntPreference) {
             return TYPE_INT;
-        } else if (type instanceof StringArraySelectorPreference) {
+        } else if (type instanceof StringListSelectorPreference) {
             return TYPE_STRING_SELECTOR;
         } else {
             return TYPE_FLOAT;
@@ -246,7 +246,7 @@ class ShiftValueRecyclerViewAdapter extends RecyclerView.Adapter<ShiftValueRecyc
                 holder.editFloat.addTextChangedListener(holder.textWatcher);
                 break;
             case TYPE_STRING_SELECTOR:
-                final StringArraySelectorPreference stringSelectorPref = (StringArraySelectorPreference) mShiftValueToPref.get(key);
+                final StringListSelectorPreference stringSelectorPref = (StringListSelectorPreference) mShiftValueToPref.get(key);
                 List<String> values = stringSelectorPref.getValue().getList();
                 int selectedIndex = stringSelectorPref.getValue().selectedIndex;
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,android.R.layout.simple_spinner_item,values);
