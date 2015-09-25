@@ -23,11 +23,12 @@ Shift continues to be immensely helpful for building the Coursera Android applic
 
 ####Gradle
 ``` java
-compile 'org.coursera.android:shift:1.0.2'
+compile 'org.coursera.android:shift:1.0.3'
 ```
 ####Manual
 
 Clone the repo and then open your Android Studio project. Go to : **File -> Project Structure -> Add a New Module (+) -> Phone And Tablet Application -> Import Existing Project** and select the shift folder.
+
 
 #Usage
 Shift has 3 main components:
@@ -151,10 +152,15 @@ ShiftManager.initialize(this, visibilityClient, MainActivity.class);
 ### Shift Value
 There are 5 types of ShiftValues: 
 
+####Basic Types
  - ShiftString
  - ShiftBoolean
  - ShiftInteger
  - ShiftFloat
+ 
+ 
+####Array Selector
+ 
  - ShiftStringArraySelector
 
 Each ShiftValue takes a Category, Description and Author as Strings, 
@@ -175,6 +181,11 @@ textView.text = ShiftValueEntrys.MESSAGE.getStringValue();
 ```
 
 ShiftValues that have the same Category will be grouped together in the ShiftMenu.
+
+####ShiftArraySelector
+ArraySelectors allow you to specify an array of values and an index for the value you want from the array. This can be useful for choosing between preset values.
+We currently support Strings using ShiftStringArraySelectors.
+
 
 ### Subscription
 
