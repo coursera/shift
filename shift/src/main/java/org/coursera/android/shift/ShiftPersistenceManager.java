@@ -17,11 +17,9 @@ import android.content.Context;
 import android.util.Log;
 
 import com.snappydb.DB;
-import com.snappydb.DBFactory;
 import com.snappydb.SnappyDB;
 import com.snappydb.SnappydbException;
 
-import java.lang.reflect.Array;
 import java.util.Set;
 
 /**
@@ -49,9 +47,8 @@ class ShiftPersistenceManager {
             db = new SnappyDB.Builder(context)
                     .name(TABLE_NAME)
                     .build();
-        } catch (Exception e) {
+        } catch (SnappydbException e) {
             Log.e(TAG, "Error creating database");
-            e.printStackTrace();
         }
     }
 
@@ -68,6 +65,10 @@ class ShiftPersistenceManager {
      *               aside from that SnappyDB seems to fit our needs with out too much boilerplate
      */
     public void invalidateDatabase(Set<String> keys, String prefix) {
+        if (db == null) {
+            Log.e(TAG, "DB is null");
+            return;
+        }
         synchronized (db) {
             if (shouldInvalidate) {
                 try {
@@ -91,11 +92,15 @@ class ShiftPersistenceManager {
     public boolean shouldInvalidate() {
         return shouldInvalidate;
     }
-    
+
     /*
         INT
      */
     public void putInt(String key, int value) {
+        if (db == null) {
+            Log.e(TAG, "DB is null");
+            return;
+        }
         synchronized (db) {
             try {
                 db.putInt(key, value);
@@ -106,6 +111,10 @@ class ShiftPersistenceManager {
     }
 
     public int getInt(String key, int defaultValue) {
+        if (db == null) {
+            Log.e(TAG, "DB is null");
+            return 0;
+        }
         synchronized (db) {
             try {
                 return db.getInt(key);
@@ -118,6 +127,10 @@ class ShiftPersistenceManager {
 
     public boolean exists(String key) {
         boolean exists = false;
+        if (db == null) {
+            Log.e(TAG, "DB is null");
+            return false;
+        }
         synchronized (db) {
             try {
                 exists = db.exists(key);
@@ -132,6 +145,10 @@ class ShiftPersistenceManager {
         STRING
      */
     public void putString(String key, String value) {
+        if (db == null) {
+            Log.e(TAG, "DB is null");
+            return;
+        }
         synchronized (db) {
             try {
                 db.put(key, value);
@@ -142,6 +159,10 @@ class ShiftPersistenceManager {
     }
 
     public String getString(String key, String defaultValue) {
+        if (db == null) {
+            Log.e(TAG, "DB is null");
+            return "";
+        }
         synchronized (db) {
             try {
                 return db.get(key);
@@ -157,6 +178,10 @@ class ShiftPersistenceManager {
      */
 
     public void putBoolean(String key, boolean value) {
+        if (db == null) {
+            Log.e(TAG, "DB is null");
+            return;
+        }
         synchronized (db) {
             try {
                 db.putBoolean(key, value);
@@ -167,6 +192,10 @@ class ShiftPersistenceManager {
     }
 
     public boolean getBoolean(String key, boolean defaultValue) {
+        if (db == null) {
+            Log.e(TAG, "DB is null");
+            return false;
+        }
         synchronized (db) {
             try {
                 return db.getBoolean(key);
@@ -181,6 +210,10 @@ class ShiftPersistenceManager {
         FLOAT
      */
     public void putFloat(String key, float value) {
+        if (db == null) {
+            Log.e(TAG, "DB is null");
+            return;
+        }
         synchronized (db) {
             try {
                 db.putFloat(key, value);
@@ -191,6 +224,10 @@ class ShiftPersistenceManager {
     }
 
     public float getFloat(String key, float defaultValue) {
+        if (db == null) {
+            Log.e(TAG, "DB is null");
+            return 0f;
+        }
         synchronized (db) {
             try {
                 return db.getFloat(key);
@@ -202,6 +239,10 @@ class ShiftPersistenceManager {
     }
 
     public void remove(String key, String type) {
+        if (db == null) {
+            Log.e(TAG, "DB is null");
+            return;
+        }
         synchronized (db) {
             try {
                 db.del(key);
@@ -215,6 +256,10 @@ class ShiftPersistenceManager {
     // Objects
 
     public <T> void putObject(String key, T value) {
+        if (db == null) {
+            Log.e(TAG, "DB is null");
+            return;
+        }
         synchronized (db) {
             try {
                 db.put(key, value);
@@ -225,6 +270,10 @@ class ShiftPersistenceManager {
     }
 
     public <T> T getObject(String key, Class<T> objectClass, T defaultValue) {
+        if (db == null) {
+            Log.e(TAG, "DB is null");
+            return null;
+        }
         synchronized (db) {
             try {
                 return db.getObject(key, objectClass);
