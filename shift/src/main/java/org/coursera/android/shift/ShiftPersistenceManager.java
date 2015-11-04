@@ -76,7 +76,7 @@ class ShiftPersistenceManager {
      */
     public void invalidateDatabase(Set<String> keys, String prefix) {
         if (db == null) {
-            Log.e(TAG, "DB is null");
+            Log.e(TAG, "DB is null, failed to invalidateDB");
             return;
         }
         synchronized (db) {
@@ -108,7 +108,7 @@ class ShiftPersistenceManager {
      */
     public void putInt(String key, int value) {
         if (db == null) {
-            Log.e(TAG, "DB is null");
+            Log.e(TAG, "DB is null, failed to putInt");
             return;
         }
         synchronized (db) {
@@ -122,7 +122,7 @@ class ShiftPersistenceManager {
 
     public int getInt(String key, int defaultValue) {
         if (db == null) {
-            Log.e(TAG, "DB is null");
+            Log.e(TAG, "DB is null, returning defaultValue for getInt");
             return defaultValue;
         }
         synchronized (db) {
@@ -138,7 +138,7 @@ class ShiftPersistenceManager {
     public boolean exists(String key) {
         boolean exists = false;
         if (db == null) {
-            Log.e(TAG, "DB is null");
+            Log.e(TAG, "DB is null, returning false for exists()");
             return false;
         }
         synchronized (db) {
@@ -156,7 +156,7 @@ class ShiftPersistenceManager {
      */
     public void putString(String key, String value) {
         if (db == null) {
-            Log.e(TAG, "DB is null");
+            Log.e(TAG, "DB is null, failed to putString");
             return;
         }
         synchronized (db) {
@@ -170,7 +170,7 @@ class ShiftPersistenceManager {
 
     public String getString(String key, String defaultValue) {
         if (db == null) {
-            Log.e(TAG, "DB is null");
+            Log.e(TAG, "DB is null, returning defaultValue for getString");
             return defaultValue;
         }
         synchronized (db) {
@@ -189,7 +189,7 @@ class ShiftPersistenceManager {
 
     public void putBoolean(String key, boolean value) {
         if (db == null) {
-            Log.e(TAG, "DB is null");
+            Log.e(TAG, "DB is null, failed to putBoolean");
             return;
         }
         synchronized (db) {
@@ -203,7 +203,7 @@ class ShiftPersistenceManager {
 
     public boolean getBoolean(String key, boolean defaultValue) {
         if (db == null) {
-            Log.e(TAG, "DB is null");
+            Log.e(TAG, "DB is null, returning defaultValue for getBoolean");
             return defaultValue;
         }
         synchronized (db) {
@@ -221,7 +221,7 @@ class ShiftPersistenceManager {
      */
     public void putFloat(String key, float value) {
         if (db == null) {
-            Log.e(TAG, "DB is null");
+            Log.e(TAG, "DB is null, failed to putFloat");
             return;
         }
         synchronized (db) {
@@ -235,7 +235,7 @@ class ShiftPersistenceManager {
 
     public float getFloat(String key, float defaultValue) {
         if (db == null) {
-            Log.e(TAG, "DB is null");
+            Log.e(TAG, "DB is null, returning defaultValue for getFloat");
             return defaultValue;
         }
         synchronized (db) {
@@ -250,7 +250,7 @@ class ShiftPersistenceManager {
 
     public void remove(String key, String type) {
         if (db == null) {
-            Log.e(TAG, "DB is null");
+            Log.e(TAG, "DB is null, failed to remove String");
             return;
         }
         synchronized (db) {
@@ -267,7 +267,7 @@ class ShiftPersistenceManager {
 
     public <T> void putObject(String key, T value) {
         if (db == null) {
-            Log.e(TAG, "DB is null");
+            Log.e(TAG, "DB is null, failed to putObject");
             return;
         }
         synchronized (db) {
@@ -281,7 +281,7 @@ class ShiftPersistenceManager {
 
     public <T> T getObject(String key, Class<T> objectClass, T defaultValue) {
         if (db == null) {
-            Log.e(TAG, "DB is null");
+            Log.e(TAG, "DB is null, returning defaultValue for getObject");
             return defaultValue;
         }
         synchronized (db) {
