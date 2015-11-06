@@ -17,11 +17,9 @@ import android.content.Context;
 import android.util.Log;
 
 import com.snappydb.DB;
-import com.snappydb.DBFactory;
 import com.snappydb.SnappyDB;
 import com.snappydb.SnappydbException;
 
-import java.lang.reflect.Array;
 import java.util.Set;
 
 /**
@@ -43,15 +41,24 @@ class ShiftPersistenceManager {
 
     private DB db;
 
+    /*
+        SnappydbException is thrown if we are unable to create the file (out of memory)
+        or the existing DB file somehow becomes inaccessible:
+        https://github.com/nhachicha/SnappyDB/blob/4e0c0805bf5c9c157042f61d9c11842c784cf91c/library/src/main/java/com/snappydb/SnappyDB.java
+        On out of memory client's app wouldn't be able to run either and the existing DB file
+        should never have it's permissions changed by another application unless the client chooses to change it themselves.
+
+        If for some reason db is null, all GET calls will still be safe because of the ability to
+        return the default value. Setting the values will not do anything.
+     */
     public ShiftPersistenceManager(Context context) {
         TABLE_NAME = TABLE_NAME + context.getPackageName();
         try {
             db = new SnappyDB.Builder(context)
                     .name(TABLE_NAME)
                     .build();
-        } catch (Exception e) {
-            Log.e(TAG, "Error creating database");
-            e.printStackTrace();
+        } catch (SnappydbException e) {
+            Log.e(TAG, "Failed to create SnappyDB! This should never happen unless out of memory. " + e.toString());
         }
     }
 
@@ -68,6 +75,10 @@ class ShiftPersistenceManager {
      *               aside from that SnappyDB seems to fit our needs with out too much boilerplate
      */
     public void invalidateDatabase(Set<String> keys, String prefix) {
+        if (db == null) {
+            Log.e(TAG, "DB is null, failed to invalidateDB");
+            return;
+        }
         synchronized (db) {
             if (shouldInvalidate) {
                 try {
@@ -91,11 +102,15 @@ class ShiftPersistenceManager {
     public boolean shouldInvalidate() {
         return shouldInvalidate;
     }
-    
+
     /*
         INT
      */
     public void putInt(String key, int value) {
+        if (db == null) {
+            Log.e(TAG, "DB is null, failed to putInt");
+            return;
+        }
         synchronized (db) {
             try {
                 db.putInt(key, value);
@@ -106,6 +121,10 @@ class ShiftPersistenceManager {
     }
 
     public int getInt(String key, int defaultValue) {
+        if (db == null) {
+            Log.e(TAG, "DB is null, returning defaultValue for getInt");
+            return defaultValue;
+        }
         synchronized (db) {
             try {
                 return db.getInt(key);
@@ -118,6 +137,10 @@ class ShiftPersistenceManager {
 
     public boolean exists(String key) {
         boolean exists = false;
+        if (db == null) {
+            Log.e(TAG, "DB is null, returning false for exists()");
+            return false;
+        }
         synchronized (db) {
             try {
                 exists = db.exists(key);
@@ -132,6 +155,10 @@ class ShiftPersistenceManager {
         STRING
      */
     public void putString(String key, String value) {
+        if (db == null) {
+            Log.e(TAG, "DB is null, failed to putString");
+            return;
+        }
         synchronized (db) {
             try {
                 db.put(key, value);
@@ -142,6 +169,10 @@ class ShiftPersistenceManager {
     }
 
     public String getString(String key, String defaultValue) {
+        if (db == null) {
+            Log.e(TAG, "DB is null, returning defaultValue for getString");
+            return defaultValue;
+        }
         synchronized (db) {
             try {
                 return db.get(key);
@@ -157,6 +188,10 @@ class ShiftPersistenceManager {
      */
 
     public void putBoolean(String key, boolean value) {
+        if (db == null) {
+            Log.e(TAG, "DB is null, failed to putBoolean");
+            return;
+        }
         synchronized (db) {
             try {
                 db.putBoolean(key, value);
@@ -167,6 +202,10 @@ class ShiftPersistenceManager {
     }
 
     public boolean getBoolean(String key, boolean defaultValue) {
+        if (db == null) {
+            Log.e(TAG, "DB is null, returning defaultValue for getBoolean");
+            return defaultValue;
+        }
         synchronized (db) {
             try {
                 return db.getBoolean(key);
@@ -181,6 +220,10 @@ class ShiftPersistenceManager {
         FLOAT
      */
     public void putFloat(String key, float value) {
+        if (db == null) {
+            Log.e(TAG, "DB is null, failed to putFloat");
+            return;
+        }
         synchronized (db) {
             try {
                 db.putFloat(key, value);
@@ -191,6 +234,10 @@ class ShiftPersistenceManager {
     }
 
     public float getFloat(String key, float defaultValue) {
+        if (db == null) {
+            Log.e(TAG, "DB is null, returning defaultValue for getFloat");
+            return defaultValue;
+        }
         synchronized (db) {
             try {
                 return db.getFloat(key);
@@ -202,6 +249,10 @@ class ShiftPersistenceManager {
     }
 
     public void remove(String key, String type) {
+        if (db == null) {
+            Log.e(TAG, "DB is null, failed to remove String");
+            return;
+        }
         synchronized (db) {
             try {
                 db.del(key);
@@ -215,6 +266,10 @@ class ShiftPersistenceManager {
     // Objects
 
     public <T> void putObject(String key, T value) {
+        if (db == null) {
+            Log.e(TAG, "DB is null, failed to putObject");
+            return;
+        }
         synchronized (db) {
             try {
                 db.put(key, value);
@@ -225,6 +280,10 @@ class ShiftPersistenceManager {
     }
 
     public <T> T getObject(String key, Class<T> objectClass, T defaultValue) {
+        if (db == null) {
+            Log.e(TAG, "DB is null, returning defaultValue for getObject");
+            return defaultValue;
+        }
         synchronized (db) {
             try {
                 return db.getObject(key, objectClass);
