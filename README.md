@@ -23,7 +23,7 @@ Shift continues to be immensely helpful for building the Coursera Android applic
 
 ####Gradle
 ``` java
-compile 'org.coursera.android:shift:1.0.3'
+compile 'org.coursera.android:shift:1.0.4'
 ```
 ####Manual
 

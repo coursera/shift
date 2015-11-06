@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/coursera/shift'
     gitUrl = 'https://github.com/coursera/shift'
 
-    libraryVersion = '1.0.3'
+    libraryVersion = '1.0.4'
 
     developerId = 'stanleyfung'
     developerName = 'Stanley Fung'
