@@ -27,7 +27,7 @@ class ShiftPersistenceManager {
 
     private static final String TAG = ShiftPersistenceManager.class.getCanonicalName();
 
-    private static final String SHARED_PREF_KEY = "ShiftPrefsFile";
+    private static final String SHARED_PREF_KEY = "org.coursera.android.shift.SHIFT_PREFS_FILE";
 
     // Invalidate once per launch
     private boolean shouldInvalidate = true;
@@ -35,11 +35,7 @@ class ShiftPersistenceManager {
     private SharedPreferences sharedPreferences;
 
     public ShiftPersistenceManager(Context context) {
-        if (context == null) {
-            Log.e(TAG, "Null context, failed to create SharedPreferences");
-        } else {
-            sharedPreferences = context.getSharedPreferences(SHARED_PREF_KEY, Context.MODE_PRIVATE);
-        }
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_KEY, Context.MODE_PRIVATE);
     }
 
     /**
@@ -53,7 +49,7 @@ class ShiftPersistenceManager {
      */
     public void invalidateDatabase(Set<String> keysToKeep) {
         if (keysToKeep == null) {
-            Log.e(TAG, "SharedPreferences are null, failed to invalidateDB");
+            Log.e(TAG, "Set keysToKeep are null, failed to invalidateDB");
             return;
         }
         if (shouldInvalidate) {
@@ -75,26 +71,14 @@ class ShiftPersistenceManager {
         INT
      */
     public void putInt(String key, int value) {
-        if (sharedPreferences == null) {
-            Log.e(TAG, "SharedPreferences are null, failed to putInt");
-            return;
-        }
         sharedPreferences.edit().putInt(key, value).apply();
     }
 
     public int getInt(String key, int defaultValue) {
-        if (sharedPreferences == null) {
-            Log.e(TAG, "SharedPreferences are null, returning defaultValue for getInt");
-            return defaultValue;
-        }
         return sharedPreferences.getInt(key, defaultValue);
     }
 
     public boolean exists(String key) {
-        if (sharedPreferences == null) {
-            Log.e(TAG, "SharedPreferences are null, returning false for exists()");
-            return false;
-        }
         return sharedPreferences.contains(key);
     }
 
@@ -102,18 +86,10 @@ class ShiftPersistenceManager {
         STRING
      */
     public void putString(String key, String value) {
-        if (sharedPreferences == null) {
-            Log.e(TAG, "SharedPreferences are null, failed to putString");
-            return;
-        }
         sharedPreferences.edit().putString(key, value).apply();
     }
 
     public String getString(String key, String defaultValue) {
-        if (sharedPreferences == null) {
-            Log.e(TAG, "SharedPreferences are null, returning defaultValue for getString");
-            return defaultValue;
-        }
         return sharedPreferences.getString(key, defaultValue);
     }
 
@@ -122,18 +98,10 @@ class ShiftPersistenceManager {
      */
 
     public void putBoolean(String key, boolean value) {
-        if (sharedPreferences == null) {
-            Log.e(TAG, "SharedPreferences are null, failed to putBoolean");
-            return;
-        }
         sharedPreferences.edit().putBoolean(key, value).apply();
     }
 
     public boolean getBoolean(String key, boolean defaultValue) {
-        if (sharedPreferences == null) {
-            Log.e(TAG, "SharedPreferences are null, returning defaultValue for getBoolean");
-            return defaultValue;
-        }
         return sharedPreferences.getBoolean(key, defaultValue);
     }
 
@@ -141,26 +109,14 @@ class ShiftPersistenceManager {
         FLOAT
      */
     public void putFloat(String key, float value) {
-        if (sharedPreferences == null) {
-            Log.e(TAG, "SharedPreferences are null, failed to putFloat");
-            return;
-        }
         sharedPreferences.edit().putFloat(key, value).apply();
     }
 
     public float getFloat(String key, float defaultValue) {
-        if (sharedPreferences == null) {
-            Log.e(TAG, "SharedPreferences are null, returning defaultValue for getFloat");
-            return defaultValue;
-        }
         return sharedPreferences.getFloat(key, defaultValue);
     }
 
     public void remove(String key, String type) {
-        if (sharedPreferences == null) {
-            Log.e(TAG, "SharedPreferences are null, failed to remove String");
-            return;
-        }
         sharedPreferences.edit().remove(key).apply();
     }
 
@@ -173,19 +129,11 @@ class ShiftPersistenceManager {
      * @param <T>
      */
     public <T> void putObject(String key, T value) {
-        if (sharedPreferences == null) {
-            Log.e(TAG, "SharedPreferences are null, failed to putObject");
-            return;
-        }
         Gson gson = new Gson();
         sharedPreferences.edit().putString(key, gson.toJson(value)).apply();
     }
 
     public <T> T getObject(String key, Class<T> objectClass, T defaultValue) {
-        if (sharedPreferences == null || !sharedPreferences.contains(key)) {
-            Log.e(TAG, "SharedPreferences are null, returning defaultValue for getObject");
-            return defaultValue;
-        }
         Gson gson = new Gson();
         return gson.fromJson(sharedPreferences.getString(key, defaultValue.toString()), objectClass);
     }
