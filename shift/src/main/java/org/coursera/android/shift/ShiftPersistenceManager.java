@@ -135,6 +135,6 @@ class ShiftPersistenceManager {
 
     public <T> T getObject(String key, Class<T> objectClass, T defaultValue) {
         Gson gson = new Gson();
-        return gson.fromJson(sharedPreferences.getString(key, defaultValue.toString()), objectClass);
+        return gson.fromJson(sharedPreferences.getString(key, gson.toJson(defaultValue.toString())), objectClass);
     }
 }
