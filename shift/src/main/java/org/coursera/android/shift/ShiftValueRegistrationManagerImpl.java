@@ -219,7 +219,7 @@ class ShiftValueRegistrationManagerImpl implements ShiftValueRegistrationManager
         ShiftPersistenceManager persistenceManager =
                 ShiftManager.getInstance().getPersistenceManager();
         if (persistenceManager.shouldInvalidate()) {
-            persistenceManager.invalidateDatabase(getAllShiftValuesAsStrings(), PREFIX);
+            persistenceManager.invalidateDatabase(getAllShiftValuesAsStrings());
         }
     }
 }
