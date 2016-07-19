@@ -60,10 +60,7 @@ public class ShiftLauncherView {
             if (tabsFragment != null && tabsFragment.isVisible()) {
                 return;
             }
-            if (ShiftManager.getInstance().getVisibilityClient().isVisible()) {
-                captureScreen(activity);
-                showTabsFragment(activity);
-            }
+            showTabsFragment(activity);
         }
     }
 
@@ -111,11 +108,15 @@ public class ShiftLauncherView {
 
     private void hideFragments(FragmentActivity activity) {
         ShiftIconFragment shiftIconFragment = getIconFragment(activity);
-        shiftIconFragment.hide();
+        if (shiftIconFragment != null) {
+            shiftIconFragment.hide();
+        }
     }
 
     private void showFragments(FragmentActivity activity) {
         ShiftIconFragment shiftIconFragment = getIconFragment(activity);
-        shiftIconFragment.show();
+        if (shiftIconFragment != null) {
+            shiftIconFragment.show();
+        }
     }
 }
