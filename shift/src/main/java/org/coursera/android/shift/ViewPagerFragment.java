@@ -13,7 +13,8 @@
 
 package org.coursera.android.shift;
 
-import android.support.v4.app.Fragment;
+
+import androidx.fragment.app.Fragment;
 
 class ViewPagerFragment extends Fragment {
     public final String TAB_TITLE;

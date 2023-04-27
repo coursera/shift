@@ -14,7 +14,8 @@
 package org.coursera.android.shift;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ShiftAppCompatActivity extends AppCompatActivity {
     protected ShiftLauncherView mShiftLauncherView;

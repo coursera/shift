@@ -13,7 +13,8 @@
 
 package org.coursera.android.shift;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 public class ShiftValue implements Comparable<ShiftValue> {
     public final String CATEGORY;

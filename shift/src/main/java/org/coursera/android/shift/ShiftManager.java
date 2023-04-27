@@ -14,7 +14,8 @@
 package org.coursera.android.shift;
 
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
+
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * ShiftManager the singleton that the client will use in order to use Shift.
