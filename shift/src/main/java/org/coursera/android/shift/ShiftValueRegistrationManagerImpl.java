@@ -13,7 +13,8 @@ limitations under the License.
 
 package org.coursera.android.shift;
 
-import android.support.v4.util.Pair;
+
+import androidx.core.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -19,8 +19,6 @@ package org.coursera.android.shift;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -30,13 +28,17 @@ import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
  * the user's scroll progress.
  * <p/>
  * To use the component, simply add it to your view hierarchy. Then in your
- * {@link android.app.Activity} or {@link android.support.v4.app.Fragment} call
- * {@link #setViewPager(android.support.v4.view.ViewPager)} providing it the ViewPager this
+ * {@link android.app.Activity} or {@link Fragment} call
+ * {@link #setViewPager(ViewPager)} providing it the ViewPager this
  * layout is being used for.
  * <p/>
  * The colors can be customized in two ways. The first and simplest is to provide an array of colors
@@ -137,14 +139,11 @@ class SlidingTabLayout extends HorizontalScrollView {
     }
 
     /**
-     * Set the {@link android.support.v4.view.ViewPager.OnPageChangeListener}. When using {@link
+     * Set the {@link ViewPager.OnPageChangeListener}. When using {@link
      * SlidingTabLayout} you are
-     * required to set any {@link android.support.v4.view.ViewPager.OnPageChangeListener} through
+     * required to set any {@link ViewPager.OnPageChangeListener} through
      * this method. This is so
      * that the layout can update it's scroll position correctly.
-     *
-     * @see android.support.v4.view.ViewPager#setOnPageChangeListener(
-     *android.support.v4.view.ViewPager.OnPageChangeListener)
      */
     @SuppressWarnings("unused")
     public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {

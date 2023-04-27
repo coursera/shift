@@ -14,13 +14,14 @@
 package org.coursera.android.shift;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Subclass of ActionBarActivity that handles the ShiftLauncherView display logic for you.
  * Extend this class if you want a ActionBarActivity to have a ShiftLauncherView
  */
-public class ShiftActionBarActivity extends ActionBarActivity {
+public class ShiftActionBarActivity extends AppCompatActivity {
     protected ShiftLauncherView mShiftLauncherView;
 
     protected void onCreate(Bundle savedInstanceState) {
